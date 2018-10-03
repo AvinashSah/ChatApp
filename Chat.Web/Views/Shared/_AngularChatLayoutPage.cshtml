@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body ng-app="chatApp">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-top:0px !important;margin-top:0px !important">
+        <a class="navbar-brand" href="@Url.Action("Index", "AngularChat")">
+            <img src="~/Content/Images/icon.png" style="height:40px;width:45px" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                @*<li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
+                        <a class="nav-link" href="@Url.Action("Index", "AngularChat")">Home <span class="sr-only">(current)</span></a>
+                    </li>*@
+                <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Chat" ? "active" : "")">
+                    <a class="nav-link" href="@Url.Action("Chat", "AngularChat")">Chat</a>
+                </li>
+                <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")">
+                    <a class="nav-link" href="@Url.Action("About", "AngularChat")">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" style="padding:10px;">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/bundles/signalr")
+    <script src="signalr/hubs"></script>
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/code")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

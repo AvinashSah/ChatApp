@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_AngularChatLayoutPage.cshtml";
+}
+
+<div ng-controller="mainCtrl">
+    <div class="panel panel-info" style="margin-top:30px; margin-left:20px;">
+        <div class="panel-heading" style="background-color:black !important">
+            <div class="row">
+                <div class="col-sm-2"><h3 class="panel-title">Real Time Chat</h3></div>
+                <div class="col-lg-5">
+                    <input ng-hide="nameSet" ng-model="name" class="form-control input-group-lg pull-left" type="text" placeholder="your name" />
+                    <button ng-hide="nameSet" ng-click="setName()" class="pull-right btn btn-primary btn-group-lg">Set</button>
+                </div>
+
+                <div class="col-lg-5">
+                    <input ng-hide="inRoom" ng-model="roomName" type="text" class="form-control input-group-lg pull-left" placeholder="room" autofocus />
+                    <button ng-hide="inRoom" ng-click="joinRoom()" class="btn btn-primary btn-group-lg pull-right">Join Room</button>
+                    <button ng-show="inRoom" ng-click="leaveRoom()" class="btn btn-warning btn-group-lg pull-right">Leave Room</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="scrollable">
+                <div ng-repeat="msg in messages">{{msg.message}}</div>
+            </div>
+            <div>
+                <input ng-show="nameSet" ng-model="newMessage" class="form-control input-sm pull-left" style="width:90%" type="text" placeholder="chat message" />
+                <button ng-show="nameSet" ng-click="sendMessage()" class="pull-right btn btn-success btn-group-lg">Send</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
